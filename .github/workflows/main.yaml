@@ -1,0 +1,16 @@
+name: Docker Compose Actions Workflow
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the stack
+        run: docker-compose up --exit-code-from protoc
+        env:
+          CI_PROJECT_DIR: ${{ github.workspace }}
+          CI_PROJECT_NAMESPACE: ${{ github.repository_owner }}
+          CI_PROJECT_NAME: ${{ github.event.repository.name }}
+          CI_SERVER_HOST: github.com
+          PROTOCBUILD_IMAGE: ghcr.io/psih-labs/protocbuild:latest
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}

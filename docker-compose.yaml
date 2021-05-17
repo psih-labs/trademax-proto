@@ -1,0 +1,15 @@
+version: "3"
+services:
+  protoc:
+    image: ${PROTOCBUILD_IMAGE}
+    container_name: protoc
+    environment:
+      - DIND_WORKSPACE=${CI_PROJECT_DIR}
+      - WORKSPACE_ROOT=/workspace/
+      - GIT_ORG=${CI_PROJECT_NAMESPACE}
+      - GIT_REPO=${CI_PROJECT_NAME}
+      - GIT_HOST=${CI_SERVER_HOST}
+      - GIT_TOKEN=${GIT_TOKEN}
+    volumes:
+      - .:/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
