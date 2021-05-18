@@ -4,7 +4,6 @@ services:
     image: ${PROTOCBUILD_IMAGE}
     container_name: protoc
     environment:
-      - DIND_WORKSPACE=${CI_PROJECT_DIR}
       - WORKSPACE_ROOT=/workspace/
       - GIT_ORG=${CI_PROJECT_NAMESPACE}
       - GIT_REPO=${CI_PROJECT_NAME}
