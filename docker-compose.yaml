@@ -11,4 +11,3 @@ services:
       - GIT_TOKEN=${GIT_TOKEN}
     volumes:
       - .:/workspace
-      - /var/run/docker.sock:/var/run/docker.sock
