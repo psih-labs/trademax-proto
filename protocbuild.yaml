@@ -1,5 +1,3 @@
 default_lang:
   - name: go
-    args: "paths=source_relative:"
-  - name: go-grpc
-    args: "paths=source_relative:"
+    args: "plugins=grpc,paths=source_relative:"
