@@ -2,7 +2,7 @@ syntax = "proto3";
 import "google/api/annotations.proto";
 
 package grpcserver;
-option go_package = "github.com/psih-labs/trademax/pb-trademax-proto-go-main/main/grpcserver";
+option go_package = "github.com/psih-labs/trademax/pb-trademax-proto-go-main/grpcserver";
 
 message GetChangePercentagesRequest {}
 message GetChangePercentagesResponse { map<int64, double> changes = 1; }
