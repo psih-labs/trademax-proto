@@ -1,8 +1,8 @@
 syntax = "proto3";
 import "google/api/annotations.proto";
 
-package grpcserver;
-option go_package = "github.com/psih-labs/trademax/grpcserver";
+package gctrpc;
+option go_package = "github.com/thrasher-corp/gocryptotrader/gctrpc";
 
 message GetChangePercentagesRequest {}
 message GetChangePercentagesResponse { map<int64, double> changes = 1; }
