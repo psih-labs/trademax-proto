@@ -1,0 +1,12 @@
+syntax = "proto3";
+import "google/api/annotations.proto";
+
+package grpcserver;
+option go_package = "github.com/psih-labs/trademax/grpcserver";
+
+message GetChangePercentagesRequest {}
+message GetChangePercentagesResponse { map<int64, double> changes = 1; }
+service Trademax {
+  rpc GetChangePercentages(GetChangePercentagesRequest)
+      returns (stream GetChangePercentagesResponse) {}
+}
