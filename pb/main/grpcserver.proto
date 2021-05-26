@@ -1,6 +1,6 @@
 syntax = "proto3";
-import "google/protobuf/Empty.proto";
-import "google/protobuf/Any.proto";
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
 
 package grpcserver;
 option go_package = "trademax/grpcserver";
