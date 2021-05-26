@@ -4,9 +4,25 @@ import "google/api/annotations.proto";
 package grpcserver;
 option go_package = "trademax/grpcserver";
 
-message GetChangePercentagesRequest {}
-message GetChangePercentagesResponse { map<int64, double> changes = 1; }
+message Exchange {
+  string name = 1;
+  string asset_type = 2;
+}
+message Changes { map<int64, double> changes = 1; }
+enum Indicator_Type {
+  PRICE = 0;
+  RSI = 1;
+}
+message GetExchangesResponse { repeated Exchange exchanges = 1; }
+message GetIndicatorsDataRequest {
+  map<Indicator_Type, google.protobuf.Any> indicators = 1;
+}
+message GetIndicatorsDataResponse {
+  map<Indicator_Type, Changes> indicators = 1;
+}
+
 service Trademax {
-  rpc GetChangePercentages(GetChangePercentagesRequest)
-      returns (stream GetChangePercentagesResponse) {}
+  rpc GetExchanges(google.protobuf.Empty) returns (GetExchangesResponse) {}
+  rpc GetIndicatorsData(GetIndicatorsDataRequest)
+      returns (stream GetIndicatorsDataResponse) {}
 }
