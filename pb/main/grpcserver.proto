@@ -14,11 +14,11 @@ enum Indicator_Kind {
   RSI = 1;
 }
 message Indicator {
-  kind indicator_kind = 1;
+  Indicator_Kind indicator_kind = 1;
   google.protobuf.Any metadata = 2;
 }
 message IndicatorWithChanges {
-  kind indicator_kind = 1;
+  Indicator_Kind indicator_kind = 1;
   map<int64, double> changes = 2;
 }
 message GetExchangesResponse { repeated Exchange exchanges = 1; }
