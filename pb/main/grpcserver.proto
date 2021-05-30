@@ -9,6 +9,10 @@ message Exchange {
   string name = 1;
   string asset_kind = 2;
 }
+message CurrencyPair {
+  string base = 1;
+  string quote = 2;
+}
 enum Indicator_Kind {
   PRICE = 0;
   RSI = 1;
@@ -19,16 +23,18 @@ message Indicator {
 }
 message IndicatorWithChanges {
   Indicator_Kind indicator_kind = 1;
-  map<int64, double> changes = 2;
+  CurrencyPair pair = 2;
+  map<int64, double> changes = 3;
 }
 message GetExchangesResponse { repeated Exchange exchanges = 1; }
-message GetIndicatorsDataRequest { repeated Indicator indicators = 1; }
-message GetIndicatorsDataResponse {
-  repeated IndicatorWithChanges indicators = 1;
+message GetIndicatorDataRequest {
+  Indicator indicator = 1;
+  Exchange exchange = 2;
 }
+message GetIndicatorDataResponse { IndicatorWithChanges indicator = 1; }
 
 service Trademax {
   rpc GetExchanges(google.protobuf.Empty) returns (GetExchangesResponse) {}
-  rpc GetIndicatorsData(GetIndicatorsDataRequest)
-      returns (stream GetIndicatorsDataResponse) {}
+  rpc GetIndicatorsData(GetIndicatorDataRequest)
+      returns (stream GetIndicatorDataResponse) {}
 }
